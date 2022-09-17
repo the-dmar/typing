@@ -19,9 +19,9 @@ const useTypingText = (response: string) => {
     setInput("")
   }
 
-  const currentText = text[paragraphIndex]
+  const currentTextBlock = text[paragraphIndex]
 
-  return [currentText, input, inputHandler] as const
+  return [currentTextBlock, input, inputHandler] as const
 }
 
 export default useTypingText
