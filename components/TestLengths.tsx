@@ -1,4 +1,5 @@
 import { SetStateAction } from "react"
+import { TestLength, TestLengthContainer } from "../styles/TestLengths.styled"
 
 const lengths = [1, 3, 5, 10]
 
@@ -10,13 +11,13 @@ const TestLengths = ({
   const handleTimerClick = (i: number) => setTestLength(lengths[i] * 60)
 
   return (
-    <div>
+    <TestLengthContainer>
       {lengths.map((length, i) => (
-        <button onClick={() => handleTimerClick(i)} key={i}>
+        <TestLength onClick={() => handleTimerClick(i)} key={i}>
           {length} Min
-        </button>
+        </TestLength>
       ))}
-    </div>
+    </TestLengthContainer>
   )
 }
 
