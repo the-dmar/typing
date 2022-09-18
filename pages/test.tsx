@@ -3,7 +3,7 @@ import { useState } from "react"
 import getText from "../adapters/getText"
 import GuidedText from "../components/GuidedText"
 import TestLengths from "../components/TestLengths"
-import TypingStats from "../components/TypingStats"
+import TypingStatistics from "../components/TypingStatistics"
 import useTimer from "../hooks/useTimer"
 
 export const getStaticProps = async () => {
@@ -20,7 +20,7 @@ const Test = ({ response }: { response: string }) => {
   return (
     <>
       <TestLengths setTestLength={setTestLength} />
-      <TypingStats stage={stage} timer={timer} />
+      <TypingStatistics stage={stage} timer={timer} />
       <GuidedText text={response} />
     </>
   )

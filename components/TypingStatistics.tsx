@@ -1,6 +1,13 @@
+import {
+  Container,
+  Header,
+  Statistic,
+  StatisticLabel,
+  StatisticWrapper,
+} from "../styles/TypingStatistics"
 import { TimerStage } from "../utils/types"
 
-const TypingStats = ({
+const TypingStatistics = ({
   stage,
   timer,
 }: {
@@ -38,22 +45,24 @@ const TypingStats = ({
   }
 
   return (
-    <div>
-      <h1>{headerValue()}</h1>
-      <p>
-        Time Remaining: <span>{timerValue()}</span>
-      </p>
-      <p>
-        Speed: <span>{speedValue()}</span>
-      </p>
-      <p>
-        Words Typed: <span>{totalWordValue()}</span>
-      </p>
-      <p>
-        Characters Typed: <span>{totalCharacterValue()}</span>
-      </p>
-    </div>
+    <Container>
+      <Header>{headerValue()}</Header>
+      <StatisticWrapper>
+        <StatisticLabel>
+          Time Remaining: <Statistic>{timerValue()}</Statistic>
+        </StatisticLabel>
+        <StatisticLabel>
+          Speed: <Statistic>{speedValue()}</Statistic>
+        </StatisticLabel>
+        <StatisticLabel>
+          Words Typed: <Statistic>{totalWordValue()}</Statistic>
+        </StatisticLabel>
+        <StatisticLabel>
+          Characters Typed: <Statistic>{totalCharacterValue()}</Statistic>
+        </StatisticLabel>
+      </StatisticWrapper>
+    </Container>
   )
 }
 
-export default TypingStats
+export default TypingStatistics
