@@ -12,7 +12,9 @@ const TestLengths = ({
   return (
     <div>
       {lengths.map((length, i) => (
-        <button onClick={() => handleTimerClick(i)}>{length} Min</button>
+        <button onClick={() => handleTimerClick(i)} key={i}>
+          {length} Min
+        </button>
       ))}
     </div>
   )
