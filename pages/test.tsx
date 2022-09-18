@@ -1,7 +1,7 @@
 import getText from "../adapters/getText"
 import GuidedText from "../components/GuidedText"
+import TestLengths from "../components/TestLengths"
 import useTimer from "../hooks/useTimer"
-import useTypingText from "../hooks/useTypingText"
 
 export const getStaticProps = async () => {
   const data = await getText()
@@ -12,9 +12,10 @@ export const getStaticProps = async () => {
 }
 
 const Test = ({ response }: { response: string }) => {
-  const [timer, start, reset, stage] = useTimer()
+  const [timer, start, reset, stage, setTimer] = useTimer()
   return (
     <>
+      <TestLengths setTimer={setTimer} />
       <GuidedText text={response} />
       <button onClick={start}>start</button>
       <button onClick={reset}>reset</button>
