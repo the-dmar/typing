@@ -1,10 +1,9 @@
 import { useState, useCallback, useEffect } from "react"
-
-type TimerStages = "not started" | "running" | "complete"
+import { TimerStage } from "../utils/types"
 
 const useTimer = (startingTime = 60) => {
   const [timer, setTimer] = useState(startingTime)
-  const [stage, setStage] = useState("not started")
+  const [stage, setStage] = useState<TimerStage>("not started")
 
   const start = useCallback(() => {
     const interval = setInterval(() => {
