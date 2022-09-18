@@ -19,8 +19,6 @@ const Test = ({ response }: { response: string }) => {
   const [timer, start, reset, stage, setTimer] = useTimer(testLength)
   return (
     <>
-      <button onClick={start}>start</button>
-      <button onClick={reset}>reset</button>
       <TestLengths setTestLength={setTestLength} />
       <TypingStats stage={stage} timer={timer} />
       <GuidedText text={response} />
