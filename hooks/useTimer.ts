@@ -1,7 +1,7 @@
 import { useState, useCallback, useEffect } from "react"
 import { TimerStage } from "../utils/types"
 
-const useTimer = (startingTime = 60) => {
+const useTimer = (startingTime: number) => {
   const [timer, setTimer] = useState(startingTime)
   const [stage, setStage] = useState<TimerStage>("not started")
 

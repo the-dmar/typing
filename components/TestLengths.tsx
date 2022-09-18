@@ -3,11 +3,11 @@ import { SetStateAction } from "react"
 const lengths = [1, 3, 5, 10]
 
 const TestLengths = ({
-  setTimer,
+  setTestLength,
 }: {
-  setTimer: React.Dispatch<SetStateAction<number>>
+  setTestLength: React.Dispatch<SetStateAction<number>>
 }) => {
-  const handleTimerClick = (i: number) => setTimer(lengths[i] * 60)
+  const handleTimerClick = (i: number) => setTestLength(lengths[i] * 60)
 
   return (
     <div>

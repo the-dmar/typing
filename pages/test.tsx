@@ -1,3 +1,5 @@
+import { useState } from "react"
+
 import getText from "../adapters/getText"
 import GuidedText from "../components/GuidedText"
 import TestLengths from "../components/TestLengths"
@@ -13,11 +15,13 @@ export const getStaticProps = async () => {
 }
 
 const Test = ({ response }: { response: string }) => {
-  const [timer, start, reset, stage, setTimer] = useTimer()
+  const [testLength, setTestLength] = useState(60)
+  const [timer, start, reset, stage, setTimer] = useTimer(testLength)
   return (
     <>
       <button onClick={start}>start</button>
-      <TestLengths setTimer={setTimer} />
+      <button onClick={reset}>reset</button>
+      <TestLengths setTestLength={setTestLength} />
       <TypingStats stage={stage} timer={timer} />
       <GuidedText text={response} />
     </>
