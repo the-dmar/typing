@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 import getText from "../adapters/getText"
 import GuidedText from "../components/GuidedText"
@@ -17,15 +17,17 @@ export const getStaticProps = async () => {
 
 const Test = ({ response }: { response: string }) => {
   const [testLength, setTestLength] = useState(60)
-  // const [timer, start, reset, stage, setTimer] = useTimer(testLength)
-  const { timer } = useTypingContext()
-  console.log(timer)
+  const { setText } = useTypingContext()
+
+  useEffect(() => {
+    typeof response === "string" && setText(response)
+  }, [])
 
   return (
     <>
       <TestLengths setTestLength={setTestLength} />
       {/* <TypingStatistics stage={stage} timer={timer} /> */}
-      <GuidedText text={response} />
+      {/* <GuidedText text={response} /> */}
     </>
   )
 }
