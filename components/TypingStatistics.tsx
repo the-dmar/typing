@@ -5,7 +5,7 @@ import {
   Statistic,
   StatisticLabel,
   StatisticWrapper,
-} from "../styles/TypingStatistics"
+} from "../styles/TypingStatistics.styled"
 
 const TypingStatistics = () => {
   const { timer, stage, resetTest } = useTypingContext()

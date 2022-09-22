@@ -18,6 +18,7 @@ interface TypingContextInterface {
   input: string
   setInput: React.Dispatch<SetStateAction<string>>
   currentTextBlock: string | undefined
+  testLength: number
 }
 
 export const TypingContext = createContext<TypingContextInterface | null>(null)
@@ -65,6 +66,7 @@ const TypingContextProvider = ({ children }: Children) => {
         input,
         setInput,
         currentTextBlock,
+        testLength,
       }}
     >
       {children}

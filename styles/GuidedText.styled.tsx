@@ -20,10 +20,14 @@ export const HiddenInput = styled.input`
   left: -10000px;
 `
 
+export const LetterWrapper = styled.p`
+  margin: 0 2vw;
+`
+
 export const Letter = styled.span<LetterProps>`
   color: ${props => props.color};
   font-family: "Red Hat Mono", monospace;
-  font-size: 1.5rem;
+  font-size: 2.1vw;
   border-bottom: ${props =>
     props.color === "#0077b6" ? "3px solid #0077b6" : "none"};
   margin-bottom: 0.5rem;

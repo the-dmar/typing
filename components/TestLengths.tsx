@@ -5,14 +5,18 @@ import { TestLength, TestLengthContainer } from "../styles/TestLengths.styled"
 const lengths = [1, 3, 5, 10]
 
 const TestLengths = () => {
-  const { setTestLength } = useTypingContext()
+  const { setTestLength, testLength } = useTypingContext()
 
   const handleTimerClick = (i: number) => setTestLength(lengths[i] * 60)
 
   return (
     <TestLengthContainer>
       {lengths.map((length, i) => (
-        <TestLength onClick={() => handleTimerClick(i)} key={i}>
+        <TestLength
+          color={testLength === lengths[i] * 60 ? "#ef476f;" : "#0077b6"}
+          onClick={() => handleTimerClick(i)}
+          key={i}
+        >
           {length} Min
         </TestLength>
       ))}

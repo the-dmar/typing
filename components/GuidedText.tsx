@@ -1,6 +1,6 @@
 import { useRef, useEffect } from "react"
 import useTypingContext from "../hooks/useTypingContext"
-import { HiddenInput, Letter } from "../styles/GuidedText.styled"
+import { HiddenInput, Letter, LetterWrapper } from "../styles/GuidedText.styled"
 
 const GuidedText = () => {
   const inputRef = useRef<HTMLInputElement | null>(null)
@@ -35,7 +35,7 @@ const GuidedText = () => {
         ref={inputRef}
         onChange={e => setInput(e.target.value)}
       />
-      <p>
+      <LetterWrapper>
         {currentTextBlock?.split("").map((letter, i) => {
           return (
             <Letter color={getLetterColor(i)} key={i}>
@@ -43,7 +43,7 @@ const GuidedText = () => {
             </Letter>
           )
         })}
-      </p>
+      </LetterWrapper>
     </>
   )
 }
