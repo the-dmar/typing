@@ -1,11 +1,10 @@
 import { useRef, useEffect } from "react"
-import useTypingText from "../hooks/useTypingText"
+import useTypingContext from "../hooks/useTypingContext"
 import { HiddenInput, Letter } from "../styles/GuidedText.styled"
 
-const GuidedText = ({ text }: { text: string }) => {
-  const [currentTextBlock, input, inputHandler] = useTypingText(text)
-
+const GuidedText = () => {
   const inputRef = useRef<HTMLInputElement | null>(null)
+  const { input, setInput, currentTextBlock } = useTypingContext()
 
   useEffect(() => {
     inputRef?.current?.focus()
@@ -24,19 +23,16 @@ const GuidedText = ({ text }: { text: string }) => {
 
     if (input.length < i) return incomplete
     if (input.length === i) return selected
-    if (input[i] === currentTextBlock.split("")[i]) {
+    if (input[i] === currentTextBlock?.split("")[i]) {
       return correct
     } else return incorrect
   }
 
   return (
     <>
-      <HiddenInput
-        ref={inputRef}
-        onChange={e => inputHandler(e.target.value)}
-      />
+      <HiddenInput ref={inputRef} onChange={e => setInput(e.target.value)} />
       <p>
-        {currentTextBlock.split("").map((letter, i) => {
+        {currentTextBlock?.split("").map((letter, i) => {
           return (
             <Letter color={getLetterColor(i)} key={i}>
               {letter}

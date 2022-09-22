@@ -12,6 +12,8 @@ interface TypingContextInterface {
   timer: number
   setText: React.Dispatch<SetStateAction<Text>>
   input: string
+  setInput: React.Dispatch<SetStateAction<string>>
+  currentTextBlock: string | undefined
 }
 
 export const TypingContext = createContext<TypingContextInterface | null>(null)
@@ -22,7 +24,9 @@ const TypingContextProvider = ({ children }: Children) => {
   const [currentTextBlock, input, setInput, setText] = useTypingText()
 
   return (
-    <TypingContext.Provider value={{ timer, setText, input }}>
+    <TypingContext.Provider
+      value={{ timer, setText, input, setInput, currentTextBlock }}
+    >
       {children}
     </TypingContext.Provider>
   )

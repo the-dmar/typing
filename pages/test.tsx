@@ -27,7 +27,7 @@ const Test = ({ response }: { response: string }) => {
     <>
       <TestLengths setTestLength={setTestLength} />
       {/* <TypingStatistics stage={stage} timer={timer} /> */}
-      {/* <GuidedText text={response} /> */}
+      <GuidedText />
     </>
   )
 }

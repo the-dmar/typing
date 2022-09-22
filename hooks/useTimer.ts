@@ -15,7 +15,7 @@ const useTimer = (startingTime: number) => {
 
           if (updatedTimer <= 0) {
             setStage("complete")
-            clearInterval(interval)
+            interval && clearInterval(interval)
             return startingTime
           }
           return updatedTimer
