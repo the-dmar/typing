@@ -1,6 +1,7 @@
 import { createContext, SetStateAction, useEffect, useState } from "react"
 import useTimer from "../hooks/useTimer"
 import useTypingText from "../hooks/useTypingText"
+import { useRouter } from "next/router"
 
 export interface Children {
   children: JSX.Element | JSX.Element[]
@@ -24,9 +25,13 @@ const TypingContextProvider = ({ children }: Children) => {
   const [testLength, setTestLength] = useState(60)
   const [timer, start, reset, stage, setTimer, setStage] = useTimer(testLength)
   const [currentTextBlock, input, setInput, setText] = useTypingText()
+  const router = useRouter()
+  const currentPath = router.pathname
 
   useEffect(() => {
-    input.length === 1 && startTest()
+    if (input.length === 1 && currentPath === "/test") {
+      startTest()
+    }
   }, [input])
 
   useEffect(() => {
