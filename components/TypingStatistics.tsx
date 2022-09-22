@@ -8,7 +8,7 @@ import {
 } from "../styles/TypingStatistics"
 
 const TypingStatistics = () => {
-  const { timer, stage } = useTypingContext()
+  const { timer, stage, resetTest } = useTypingContext()
   const headerValue = () => {
     if (stage === "not started") return "Start typing to begin!"
     if (stage === "running") return "Awaiting Results..."
@@ -16,7 +16,8 @@ const TypingStatistics = () => {
   }
 
   const timerValue = () => {
-    if (stage === "complete") return "Try again"
+    if (stage === "complete")
+      return <button onClick={resetTest}>Try Again</button>
     if (typeof timer === "number") return `${timer}s`
   }
 

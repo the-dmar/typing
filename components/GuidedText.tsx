@@ -30,7 +30,11 @@ const GuidedText = () => {
 
   return (
     <>
-      <HiddenInput ref={inputRef} onChange={e => setInput(e.target.value)} />
+      <HiddenInput
+        value={input}
+        ref={inputRef}
+        onChange={e => setInput(e.target.value)}
+      />
       <p>
         {currentTextBlock?.split("").map((letter, i) => {
           return (

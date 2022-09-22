@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from "react"
+import { useState, useCallback } from "react"
 import { TimerStage } from "../utils/types"
 
 const useTimer = (startingTime: number) => {
@@ -16,19 +16,14 @@ const useTimer = (startingTime: number) => {
           if (updatedTimer <= 0) {
             setStage("complete")
             interval && clearInterval(interval)
-            return startingTime
           }
+
           return updatedTimer
         })
       }, 1000)
   }, [setTimer, startingTime])
 
-  const reset = useCallback(
-    () => setTimer(startingTime),
-    [setTimer, startingTime]
-  )
-
-  return [timer, start, reset, stage, setTimer, setStage] as const
+  return [timer, start, stage, setTimer, setStage] as const
 }
 
 export default useTimer

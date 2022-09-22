@@ -11,6 +11,7 @@ type Text = string | string[] | null
 
 interface TypingContextInterface {
   setTestLength: React.Dispatch<SetStateAction<number>>
+  resetTest: () => void
   timer: number
   stage: string
   setText: React.Dispatch<SetStateAction<Text>>
@@ -23,7 +24,7 @@ export const TypingContext = createContext<TypingContextInterface | null>(null)
 
 const TypingContextProvider = ({ children }: Children) => {
   const [testLength, setTestLength] = useState(60)
-  const [timer, start, reset, stage, setTimer, setStage] = useTimer(testLength)
+  const [timer, start, stage, setTimer, setStage] = useTimer(testLength)
   const [currentTextBlock, input, setInput, setText] = useTypingText()
   const router = useRouter()
   const currentPath = router.pathname
@@ -47,10 +48,17 @@ const TypingContextProvider = ({ children }: Children) => {
     })
   }
 
+  const resetTest = () => {
+    setStage("not started")
+    setTimer(testLength)
+    setInput("")
+  }
+
   return (
     <TypingContext.Provider
       value={{
         setTestLength,
+        resetTest,
         timer,
         stage,
         setText,
