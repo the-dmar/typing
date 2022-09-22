@@ -16,9 +16,8 @@ const TypingStatistics = () => {
   }
 
   const timerValue = () => {
-    if (stage === "running" && typeof timer === "number") return `${timer}s`
     if (stage === "complete") return "Try again"
-    return "N/A"
+    if (typeof timer === "number") return `${timer}s`
   }
 
   const speedValue = () => {

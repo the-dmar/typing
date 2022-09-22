@@ -16,7 +16,6 @@ export const getStaticProps = async () => {
 }
 
 const Test = ({ response }: { response: string }) => {
-  const [testLength, setTestLength] = useState(60)
   const { setText } = useTypingContext()
 
   useEffect(() => {
@@ -25,7 +24,7 @@ const Test = ({ response }: { response: string }) => {
 
   return (
     <>
-      <TestLengths setTestLength={setTestLength} />
+      <TestLengths />
       <TypingStatistics />
       <GuidedText />
     </>

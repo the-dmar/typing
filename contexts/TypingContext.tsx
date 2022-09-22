@@ -9,6 +9,7 @@ export interface Children {
 type Text = string | string[] | null
 
 interface TypingContextInterface {
+  setTestLength: React.Dispatch<SetStateAction<number>>
   timer: number
   stage: string
   setText: React.Dispatch<SetStateAction<Text>>
@@ -28,6 +29,10 @@ const TypingContextProvider = ({ children }: Children) => {
     input.length === 1 && startTest()
   }, [input])
 
+  useEffect(() => {
+    setTimer(testLength)
+  }, [testLength])
+
   const startTest = () => {
     setStage(currentStage => {
       if (currentStage === "not started") {
@@ -39,7 +44,15 @@ const TypingContextProvider = ({ children }: Children) => {
 
   return (
     <TypingContext.Provider
-      value={{ timer, stage, setText, input, setInput, currentTextBlock }}
+      value={{
+        setTestLength,
+        timer,
+        stage,
+        setText,
+        input,
+        setInput,
+        currentTextBlock,
+      }}
     >
       {children}
     </TypingContext.Provider>
