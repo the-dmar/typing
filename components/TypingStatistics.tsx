@@ -1,3 +1,4 @@
+import useTypingContext from "../hooks/useTypingContext"
 import {
   Container,
   Header,
@@ -5,15 +6,9 @@ import {
   StatisticLabel,
   StatisticWrapper,
 } from "../styles/TypingStatistics"
-import { TimerStage } from "../utils/types"
 
-const TypingStatistics = ({
-  stage,
-  timer,
-}: {
-  stage: TimerStage
-  timer: number
-}) => {
+const TypingStatistics = () => {
+  const { timer, stage } = useTypingContext()
   const headerValue = () => {
     if (stage === "not started") return "Start typing to begin!"
     if (stage === "running") return "Awaiting Results..."

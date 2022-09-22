@@ -28,7 +28,7 @@ const useTimer = (startingTime: number) => {
     [setTimer, startingTime]
   )
 
-  return [timer, start, reset, stage, setTimer] as const
+  return [timer, start, reset, stage, setTimer, setStage] as const
 }
 
 export default useTimer
