@@ -20,10 +20,8 @@ const Test = ({ response }: { response: string }) => {
 
   useEffect(() => {
     typeof response === "string" &&
-      setText(
-        `Sea glass is a great example of an item made by both man and nature. When glass from bottles or jars breaks near the ocean, the glass is smoothed out by the waves and sand, giving it a frosty look. All fruits have seeds. They may be different shapes and sizes, but they are almost always on the inside. The only fruit`
-      )
-    // typeof response === "string" && setText(response)
+      typeof response === "string" &&
+      setText(response)
   }, [])
 
   return (

@@ -8,7 +8,7 @@ const useTimer = (startingTime: number) => {
   const start = useCallback(() => {
     const interval = setInterval(() => {
       setTimer(timer => {
-        setStage("running")
+        stage !== "running" && setStage("running")
         let updatedTimer = (timer -= 1)
 
         if (updatedTimer <= 0) {

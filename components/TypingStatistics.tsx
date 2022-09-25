@@ -11,12 +11,6 @@ const TypingStatistics = () => {
   const { timer, stage, resetTest, correctWords, testLength } =
     useTypingContext()
 
-  const correctCharacters = correctWords?.join(" ") || ""
-  const multiplier = testLength / 60
-  const adjustedWords = correctCharacters.length / 4.7
-  console.log({ correctCharacters, multiplier, adjustedWords })
-  console.log(correctCharacters)
-
   const headerValue = () => {
     if (stage === "not started") return "Start typing to begin!"
     if (stage === "running") return "Awaiting Results..."
@@ -30,20 +24,24 @@ const TypingStatistics = () => {
   }
 
   const speedValue = () => {
+    const correctCharacters = correctWords?.join(" ") || ""
     if (stage === "running") return "In Progress"
-    if (stage === "complete") return correctCharacters.length / 4.7 / multiplier
+    if (stage === "complete") {
+      return `${(correctCharacters.length / 4.7).toFixed(2)} WPM`
+    }
+    return
     return "N/A"
   }
 
   const totalWordValue = () => {
     if (stage === "running") return "In Progress"
-    if (stage === "complete") return 50
+    if (stage === "complete" && correctWords) return correctWords.length
     return "N/A"
   }
 
   const totalCharacterValue = () => {
     if (stage === "running") return "In Progress"
-    if (stage === "complete") return 200
+    if (stage === "complete" && correctWords) return correctWords.join().length
     return "N/A"
   }
 

@@ -28,7 +28,8 @@ const TypingContextProvider = ({ children }: Children) => {
   const [testLength, setTestLength] = useState(60)
   const [correctWords, setCorrectWords] = useState<string[] | null>(null)
   const [timer, start, stage, setTimer, setStage] = useTimer(testLength)
-  const [currentTextBlock, input, setInput, text, setText] = useTypingText()
+  const [currentTextBlock, input, setInput, text, inputHistory, setText] =
+    useTypingText()
   const router = useRouter()
   const currentPath = router.pathname
 
@@ -44,17 +45,18 @@ const TypingContextProvider = ({ children }: Children) => {
 
   useEffect(() => {
     if (stage === "complete" && Array.isArray(text)) {
-      const inputWords = input.split(" ")
+      const inputWords = `${input} ${inputHistory}`.split(" ")
       const fullTextWords = text.join("\n").split(" ")
-
       const newCorrectWords = inputWords.reduce(
         (words: string[], currentWord, i) => {
           if (currentWord === fullTextWords[i]) return [...words, currentWord]
-          else return words
+          else {
+            console.log({ fullTextWord: fullTextWords[i], currentWord })
+            return words
+          }
         },
         []
       )
-      console.log(newCorrectWords)
 
       setCorrectWords(newCorrectWords)
     }

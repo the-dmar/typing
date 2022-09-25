@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 const useTypingText = () => {
   const [text, setText] = useState<string[] | null | string>(null)
+  const [inputHistory, setInputHistory] = useState<string[]>([""])
   const [paragraphIndex, setParagraphIndex] = useState(0)
   const [input, setInput] = useState("")
 
@@ -20,14 +21,26 @@ const useTypingText = () => {
     }
   }, [input])
 
+  useEffect(() => {
+    console.log(inputHistory)
+  }, [inputHistory])
+
   const nextParagraph = () => {
     setParagraphIndex(paragraphIndex => (paragraphIndex += 1))
+    setInputHistory(inputHistory => [...inputHistory, input])
     setInput("")
   }
 
   const currentTextBlock = text?.[paragraphIndex]
 
-  return [currentTextBlock, input, setInput, text, setText] as const
+  return [
+    currentTextBlock,
+    input,
+    setInput,
+    text,
+    inputHistory.join(" "),
+    setText,
+  ] as const
 }
 
 export default useTypingText
