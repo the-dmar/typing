@@ -61,12 +61,8 @@ const TypingContextProvider = ({ children }: Children) => {
   }, [stage])
 
   const startTest = () => {
-    setStage(currentStage => {
-      if (currentStage === "not started") {
-        start()
-        return "running"
-      } else return currentStage
-    })
+    start()
+    setStage("running")
   }
 
   const resetTest = () => {
