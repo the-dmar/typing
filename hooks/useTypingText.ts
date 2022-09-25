@@ -27,7 +27,7 @@ const useTypingText = () => {
 
   const currentTextBlock = text?.[paragraphIndex]
 
-  return [currentTextBlock, input, setInput, setText] as const
+  return [currentTextBlock, input, setInput, text, setText] as const
 }
 
 export default useTypingText

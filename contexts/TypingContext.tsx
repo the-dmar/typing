@@ -19,14 +19,16 @@ interface TypingContextInterface {
   setInput: React.Dispatch<SetStateAction<string>>
   currentTextBlock: string | undefined
   testLength: number
+  correctWords: string[] | null
 }
 
 export const TypingContext = createContext<TypingContextInterface | null>(null)
 
 const TypingContextProvider = ({ children }: Children) => {
   const [testLength, setTestLength] = useState(60)
+  const [correctWords, setCorrectWords] = useState<string[] | null>(null)
   const [timer, start, stage, setTimer, setStage] = useTimer(testLength)
-  const [currentTextBlock, input, setInput, setText] = useTypingText()
+  const [currentTextBlock, input, setInput, text, setText] = useTypingText()
   const router = useRouter()
   const currentPath = router.pathname
 
@@ -39,6 +41,24 @@ const TypingContextProvider = ({ children }: Children) => {
   useEffect(() => {
     setTimer(testLength)
   }, [testLength])
+
+  useEffect(() => {
+    if (stage === "complete" && Array.isArray(text)) {
+      const inputWords = input.split(" ")
+      const fullTextWords = text.join("\n").split(" ")
+
+      const newCorrectWords = inputWords.reduce(
+        (words: string[], currentWord, i) => {
+          if (currentWord === fullTextWords[i]) return [...words, currentWord]
+          else return words
+        },
+        []
+      )
+      console.log(newCorrectWords)
+
+      setCorrectWords(newCorrectWords)
+    }
+  }, [stage])
 
   const startTest = () => {
     setStage(currentStage => {
@@ -67,6 +87,7 @@ const TypingContextProvider = ({ children }: Children) => {
         setInput,
         currentTextBlock,
         testLength,
+        correctWords,
       }}
     >
       {children}

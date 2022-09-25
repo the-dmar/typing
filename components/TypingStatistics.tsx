@@ -8,7 +8,15 @@ import {
 } from "../styles/TypingStatistics.styled"
 
 const TypingStatistics = () => {
-  const { timer, stage, resetTest } = useTypingContext()
+  const { timer, stage, resetTest, correctWords, testLength } =
+    useTypingContext()
+
+  const correctCharacters = correctWords?.join(" ") || ""
+  const multiplier = testLength / 60
+  const adjustedWords = correctCharacters.length / 4.7
+  console.log({ correctCharacters, multiplier, adjustedWords })
+  console.log(correctCharacters)
+
   const headerValue = () => {
     if (stage === "not started") return "Start typing to begin!"
     if (stage === "running") return "Awaiting Results..."
@@ -23,7 +31,7 @@ const TypingStatistics = () => {
 
   const speedValue = () => {
     if (stage === "running") return "In Progress"
-    if (stage === "complete") return 120
+    if (stage === "complete") return correctCharacters.length / 4.7 / multiplier
     return "N/A"
   }
 
