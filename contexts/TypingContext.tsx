@@ -51,7 +51,13 @@ const TypingContextProvider = ({ children }: Children) => {
         (words: string[], currentWord, i) => {
           if (currentWord === fullTextWords[i]) return [...words, currentWord]
           else {
-            console.log({ fullTextWord: fullTextWords[i], currentWord })
+            console.log({
+              inputWords,
+              fullTextWords,
+              i,
+              fullTextWord: fullTextWords[i],
+              currentWord,
+            })
             return words
           }
         },

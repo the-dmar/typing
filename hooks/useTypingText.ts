@@ -4,6 +4,7 @@ const useTypingText = () => {
   const [inputHistory, setInputHistory] = useState<string[]>([""])
   const [paragraphIndex, setParagraphIndex] = useState(0)
   const [input, setInput] = useState("")
+  const currentParagraph = text?.[paragraphIndex]
 
   useEffect(() => {
     setText(currentText => {
@@ -14,16 +15,10 @@ const useTypingText = () => {
   }, [text])
 
   useEffect(() => {
-    const currentParagraph = text?.[paragraphIndex]
     if (currentParagraph && currentParagraph.length === input.length) {
       nextParagraph()
-      return
     }
   }, [input])
-
-  useEffect(() => {
-    console.log(inputHistory)
-  }, [inputHistory])
 
   const nextParagraph = () => {
     setParagraphIndex(paragraphIndex => (paragraphIndex += 1))
@@ -31,12 +26,20 @@ const useTypingText = () => {
     setInput("")
   }
 
+  const handleSetInput = (value: string) => {
+    const currentCharacter = currentParagraph?.[value.length - 1]
+    const lastTypedCharacter = value[value.length - 1]
+    if (currentCharacter === " " && lastTypedCharacter !== " ")
+      setInput(`${value.slice(0, -1)} `)
+    else setInput(value)
+  }
+
   const currentTextBlock = text?.[paragraphIndex]
 
   return [
     currentTextBlock,
     input,
-    setInput,
+    handleSetInput,
     text,
     inputHistory.join(" "),
     setText,

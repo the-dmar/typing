@@ -2,6 +2,7 @@ import useTypingContext from "../hooks/useTypingContext"
 import {
   Container,
   Header,
+  RestartButton,
   Statistic,
   StatisticLabel,
   StatisticWrapper,
@@ -19,7 +20,7 @@ const TypingStatistics = () => {
 
   const timerValue = () => {
     if (stage === "complete")
-      return <button onClick={resetTest}>Try Again</button>
+      return <RestartButton onClick={resetTest}>Try Again</RestartButton>
     if (typeof timer === "number") return `${timer}s`
   }
 
@@ -29,7 +30,6 @@ const TypingStatistics = () => {
     if (stage === "complete") {
       return `${(correctCharacters.length / 4.7).toFixed(2)} WPM`
     }
-    return
     return "N/A"
   }
 

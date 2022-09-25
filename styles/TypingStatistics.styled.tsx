@@ -31,3 +31,18 @@ export const Statistic = styled.span`
   margin-left: 0.4rem;
   color: #ef476f;
 `
+
+export const RestartButton = styled.button`
+  margin-left: 0.4rem;
+  background: #0077b6;
+  border: none;
+  border-radius: 5px;
+  padding: 0.35rem 0.9rem;
+  color: white;
+  font-size: 1.4rem;
+  cursor: pointer;
+
+  :hover {
+    background: "#1e8cc7";
+  }
+`
