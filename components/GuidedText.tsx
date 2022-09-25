@@ -35,7 +35,6 @@ const GuidedText = () => {
         ref={inputRef}
         onChange={e => setInput(e.target.value)}
       />
-      <p>{input}</p>
       <LetterWrapper>
         {currentTextBlock?.split("").map((letter, i) => {
           return (
