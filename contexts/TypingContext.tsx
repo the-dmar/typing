@@ -16,7 +16,7 @@ interface TypingContextInterface {
   stage: string
   setText: React.Dispatch<SetStateAction<Text>>
   input: string
-  setInput: React.Dispatch<SetStateAction<string>>
+  setInput: (value: string) => void
   currentTextBlock: string | undefined
   testLength: number
   correctWords: string[] | null
@@ -45,7 +45,9 @@ const TypingContextProvider = ({ children }: Children) => {
 
   useEffect(() => {
     if (stage === "complete" && Array.isArray(text)) {
-      const inputWords = `${input} ${inputHistory}`.split(" ")
+      const inputWords = `${inputHistory} ${input}`
+        .split(" ")
+        .filter(word => word)
       const fullTextWords = text.join("\n").split(" ")
       const newCorrectWords = inputWords.reduce(
         (words: string[], currentWord, i) => {

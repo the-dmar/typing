@@ -9,7 +9,7 @@ const useTypingText = () => {
   useEffect(() => {
     setText(currentText => {
       if (typeof currentText === "string") {
-        return currentText.split("\n").filter(line => line)
+        return currentText.split(/\n/).filter(line => line)
       } else return text
     })
   }, [text])
